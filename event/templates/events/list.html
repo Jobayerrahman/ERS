@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Event List {% endblock %}
+
+{% block content %}
+
+    <div class="event-wrapper">
+        <div class="">
+            <div class=""><p class="font-bold"> Event List</p></div>
+            <br>
+            <div class= "" style=" width:1600px; height: 600px;">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-dark">
+                            <thead >
+                                <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            {% for event_information in events_information %}
+                            <tbody>
+                                <tr>
+                                <td scope="row">{{event_information.title}}</td>
+                                <td>{{event_information.location}}</td>
+                                <td>{{event_information.date}}</td>
+                                <td>{{event_information.time}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="">Registration</a>
+                                </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
