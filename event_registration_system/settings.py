@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'event'
+    'event',
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
     },
 ]
 
+# AUTH_USER_MODEL = 'authentication.userInformation'
 WSGI_APPLICATION = 'event_registration_system.wsgi.application'
 
 

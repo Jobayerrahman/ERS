@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} Event List {% endblock %}
+
+{% block content %}
+    <div class="auth-wrapper">
+        <form class="form-group" method="POST">
+            {% csrf_token %}  
+            <div class="list-group"> 
+                <div class="mb-2"> 
+                    <label class="form-label">User name</label>
+                    <input name="username" type="text" placeholder="Enter the user name" class="form-control no-border"> 
+                </div> 
+                <div class="mb-2"> 
+                    <label class="form-label">Password</label>
+                    <input name="password" type="password" placeholder="Enter the password" class="form-control no-border"> 
+                </div> 
+            </div>
+            {%  for field in login_form %}
+                <p>
+                    {% for error in field.errors %}
+                        <p style="background-color: #e0e0e0; color: rgb(243, 98, 98); border-radius:10px">{{error}}</p>
+                    {% endfor %}
+
+                    {% if login_form.non_field_errors %}
+                        <p style="color: red;">{{ login_form.non_field_errors }}</p>
+                    {% endif %}
+                </p>
+            {% endfor %}
+
+            <button 
+                type="submit" 
+                class="btn" 
+                style="
+                    width:100%;
+                    height:40px;
+                    background-color: #68ca82; 
+                    color: azure"
+                >
+                Sign in
+            </button> 
+            <div class="line line-dashed"></div>
+            <p class="text-muted text-center"><small>Do u have an account?</small></p> 
+            <a 
+                href="{% url 'registration' %}" 
+                class="btn" 
+                style="
+                    width:100%;
+                    height:40px;
+                    background-color: #7072ee; 
+                    color: azure"
+                >
+                Sign up now
+            </a> 
+        </form> 
+    </div>
+{% endblock %}
