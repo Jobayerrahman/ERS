@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from authentication.forms import RegistrationForm, AccountAuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import userInformation
+from django.contrib.auth.models import User
 
 def registration_view(request):
     context = {}
@@ -22,11 +23,13 @@ def registration_view(request):
         )
         if form.is_valid():
             print("save!")
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            account = authenticate(request,username=username, password=raw_password)
-            print(account)
-            form.save()
+            user = User()
+            print(user)
+            user.username = form.cleaned_data.get('username')
+            user.raw_password = form.cleaned_data.get('password')
+            # account = authenticate(request,username=username, password=raw_password)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
             return redirect('event_list')
         else:
             context['registration_form'] = form
